@@ -121,7 +121,7 @@ function omnia_seo_meta(): void {
         $desc  = 'Omnia Group SARL, agence multiservices enregistrée à Abomey-Calavi, Bénin depuis 2018. RCCM RB/ABC/18 B 2458.';
     } elseif ( is_page('contact') ) {
         $title = 'Contactez-nous' . $sep . $site;
-        $desc  = 'Contactez Omnia Group à Zoca, Abomey-Calavi. Tél : +229 01 96 87 04 99. Lun–Ven 9h–18h30 · Sam 9h–16h.';
+        $desc  = 'Contactez Omnia Group à Zoca, Abomey-Calavi. Lun–Ven 9h–18h30 · Sam 9h–16h. Disponible sur WhatsApp.';
     } else {
         $title = get_the_title() . $sep . $site;
         $desc  = get_the_excerpt() ?: 'Omnia Group SARL — Agence multiservices à Abomey-Calavi, Bénin.';
@@ -161,7 +161,6 @@ function omnia_schema_jsonld(): void {
         "name": "Omnia Group SARL",
         "description": "Agence multiservices à Abomey-Calavi, Bénin. Mobile Money MTN & Moov, Assurances, Billeterie aérienne, Canal+.",
         "url": "<?php echo esc_url( home_url('/') ); ?>",
-        "telephone": "+2290196870499",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Ilot 103 J, Maison GADESSOU, ZOCA",

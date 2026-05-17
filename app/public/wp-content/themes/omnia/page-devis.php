@@ -92,7 +92,7 @@
                             <div class="devis-field__phone">
                                 <span class="devis-field__prefix">+229</span>
                                 <input class="devis-field__input" type="tel" id="telephone" name="telephone"
-                                       placeholder="01 96 87 04 99" autocomplete="tel" required>
+                                       placeholder="01 23 45 67 89 0" autocomplete="tel" required>
                             </div>
                             <p class="devis-form__error" id="tel-error" role="alert" hidden>Veuillez entrer un numéro valide.</p>
                         </div>

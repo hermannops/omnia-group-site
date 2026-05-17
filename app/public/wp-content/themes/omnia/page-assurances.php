@@ -284,9 +284,7 @@ get_header(); ?>
                     <a href="<?php echo esc_url( home_url('/devis') ); ?>" class="btn btn-primary">
                         Demander un devis
                     </a>
-                    <a href="tel:+2290196870499" class="btn btn-outline">
-                        +229 01 96 87 04 99
-                    </a>
+                    <a href="<?php echo esc_url('https://wa.me/2290196870499?text=Bonjour%20Omnia%20Group%2C%20je%20souhaite%20des%20informations%20sur%20vos%20services.'); ?>" class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </div>
             </div>
         </div>
