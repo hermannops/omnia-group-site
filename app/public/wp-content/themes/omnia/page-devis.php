@@ -36,7 +36,17 @@
                     <div class="devis-step__line" id="step-line-4" aria-hidden="true" hidden></div>
                     <div class="devis-step" role="listitem" data-step="4" id="step-indicator-4" hidden>
                         <div class="devis-step__circle">4</div>
+                        <span class="devis-step__label">Documents</span>
+                    </div>
+                    <div class="devis-step__line" id="step-line-5" aria-hidden="true" hidden></div>
+                    <div class="devis-step" role="listitem" data-step="5" id="step-indicator-5" hidden>
+                        <div class="devis-step__circle">5</div>
                         <span class="devis-step__label">Préférences</span>
+                    </div>
+                    <div class="devis-step__line" id="step-line-6" aria-hidden="true" hidden></div>
+                    <div class="devis-step" role="listitem" data-step="6" id="step-indicator-6" hidden>
+                        <div class="devis-step__circle">6</div>
+                        <span class="devis-step__label">Services</span>
                     </div>
                 </div>
 
@@ -363,8 +373,15 @@
                                       placeholder="Ex : Visa expiré, renouvellement de titre de séjour en cours, première demande de visa…" rows="3"></textarea>
                         </div>
 
-                        <!-- §5 Préférences de voyage -->
-                        <p class="devis-subsection-title">Préférences de voyage</p>
+                        <div class="devis-form__nav">
+                            <button type="button" class="btn btn-outline devis-btn-outline" id="step4-back">← Retour</button>
+                            <button type="button" class="btn btn-primary" id="step4-next">Continuer →</button>
+                        </div>
+                    </fieldset>
+
+                    <!-- ── STEP 5: Billeterie — Préférences de voyage + Budget ── -->
+                    <fieldset class="devis-fieldset" id="step-5" hidden>
+                        <legend class="devis-fieldset__legend">Préférences de voyage</legend>
 
                         <div class="devis-field">
                             <label class="devis-field__label" for="classe_billet">Classe du billet</label>
@@ -398,8 +415,35 @@
                             </div>
                         </div>
 
-                        <!-- §6 Services complémentaires -->
-                        <p class="devis-subsection-title">Services complémentaires</p>
+                        <p class="devis-subsection-title">Budget</p>
+
+                        <div class="devis-field-row">
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="budget">
+                                    Budget estimatif
+                                    <span class="devis-field__optional">(optionnel)</span>
+                                </label>
+                                <input class="devis-field__input" type="number" id="budget" name="budget" placeholder="Ex : 500 000" min="0">
+                            </div>
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="devise">Devise</label>
+                                <select class="devis-field__input devis-field__select" id="devise" name="devise">
+                                    <option value="FCFA">FCFA</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="devis-form__nav">
+                            <button type="button" class="btn btn-outline devis-btn-outline" id="step5-back">← Retour</button>
+                            <button type="button" class="btn btn-primary" id="step5-next">Continuer →</button>
+                        </div>
+                    </fieldset>
+
+                    <!-- ── STEP 6: Billeterie — Services complémentaires ── -->
+                    <fieldset class="devis-fieldset" id="step-6" hidden>
+                        <legend class="devis-fieldset__legend">Services complémentaires</legend>
 
                         <div class="devis-field">
                             <div class="devis-checkbox-group devis-checkbox-group--grid">
@@ -422,30 +466,9 @@
                             </div>
                         </div>
 
-                        <!-- §7 Budget -->
-                        <p class="devis-subsection-title">Budget</p>
-
-                        <div class="devis-field-row">
-                            <div class="devis-field">
-                                <label class="devis-field__label" for="budget">
-                                    Budget estimatif
-                                    <span class="devis-field__optional">(optionnel)</span>
-                                </label>
-                                <input class="devis-field__input" type="number" id="budget" name="budget" placeholder="Ex : 500 000" min="0">
-                            </div>
-                            <div class="devis-field">
-                                <label class="devis-field__label" for="devise">Devise</label>
-                                <select class="devis-field__input devis-field__select" id="devise" name="devise">
-                                    <option value="FCFA">FCFA</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="USD">USD</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div class="devis-form__nav">
-                            <button type="button" class="btn btn-outline devis-btn-outline" id="step4-back">← Retour</button>
-                            <button type="submit" class="btn btn-primary" id="submit-btn-4">
+                            <button type="button" class="btn btn-outline devis-btn-outline" id="step6-back">← Retour</button>
+                            <button type="submit" class="btn btn-primary" id="submit-btn-6">
                                 <span class="submit-text">Envoyer ma demande</span>
                                 <span class="submit-spinner" hidden aria-hidden="true">…</span>
                             </button>

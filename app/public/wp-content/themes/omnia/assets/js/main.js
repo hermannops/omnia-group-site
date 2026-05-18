@@ -118,7 +118,7 @@
     const devisForm = document.getElementById('devis-form');
 
     if (devisForm) {
-        const steps      = [1, 2, 3, 4];
+        const steps      = [1, 2, 3, 4, 5, 6];
         let currentStep  = 1;
 
         const getFieldset = n => document.getElementById(`step-${n}`);
@@ -224,6 +224,21 @@
         // Step 4 → back
         document.getElementById('step4-back')?.addEventListener('click', () => showStep(3));
 
+        // Step 4 → 5
+        document.getElementById('step4-next')?.addEventListener('click', () => {
+            if (!validateStep4()) return;
+            showStep(5);
+        });
+
+        // Step 5 → back
+        document.getElementById('step5-back')?.addEventListener('click', () => showStep(4));
+
+        // Step 5 → 6
+        document.getElementById('step5-next')?.addEventListener('click', () => showStep(6));
+
+        // Step 6 → back
+        document.getElementById('step6-back')?.addEventListener('click', () => showStep(5));
+
         // Block past dates on all date inputs
         const today = new Date().toISOString().split('T')[0];
         document.querySelectorAll('#devis-form input[type="date"]').forEach(input => {
@@ -278,8 +293,10 @@
             target?.removeAttribute('hidden');
 
             const isBilleterie = service === 'billeterie';
-            document.getElementById('step-indicator-4')?.toggleAttribute('hidden', !isBilleterie);
-            document.getElementById('step-line-4')?.toggleAttribute('hidden', !isBilleterie);
+            [4, 5, 6].forEach(n => {
+                document.getElementById(`step-indicator-${n}`)?.toggleAttribute('hidden', !isBilleterie);
+                document.getElementById(`step-line-${n}`)?.toggleAttribute('hidden', !isBilleterie);
+            });
             document.getElementById('step3-next')?.toggleAttribute('hidden', !isBilleterie);
             document.getElementById('submit-btn')?.toggleAttribute('hidden', isBilleterie);
         }
