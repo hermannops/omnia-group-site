@@ -227,34 +227,186 @@
 
                         <!-- Billeterie fields -->
                         <div class="conditional-fields" id="fields-billeterie" hidden>
+
+                            <!-- §1 Informations de voyage -->
+                            <p class="devis-subsection-title">Informations de voyage</p>
+
                             <div class="devis-field-row">
                                 <div class="devis-field">
-                                    <label class="devis-field__label" for="ville_depart">Ville de départ</label>
-                                    <input class="devis-field__input" type="text" id="ville_depart" name="ville_depart" placeholder="Ex : Cotonou">
+                                    <label class="devis-field__label" for="ville_depart">Ville de départ <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="text" id="ville_depart" name="ville_depart" placeholder="Ex : Cotonou" required>
+                                    <p class="devis-form__error" id="ville-depart-error" role="alert" hidden>Veuillez indiquer la ville de départ.</p>
                                 </div>
                                 <div class="devis-field">
-                                    <label class="devis-field__label" for="destination">Destination</label>
-                                    <input class="devis-field__input" type="text" id="destination" name="destination" placeholder="Ex : Paris">
+                                    <label class="devis-field__label" for="destination">Destination <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="text" id="destination" name="destination" placeholder="Ex : Paris" required>
+                                    <p class="devis-form__error" id="destination-error" role="alert" hidden>Veuillez indiquer la destination.</p>
                                 </div>
                             </div>
+
                             <div class="devis-field-row">
                                 <div class="devis-field">
-                                    <label class="devis-field__label" for="date_depart">Date de départ</label>
-                                    <input class="devis-field__input" type="date" id="date_depart" name="date_depart">
+                                    <label class="devis-field__label" for="date_depart">Date de départ <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="date" id="date_depart" name="date_depart" required>
+                                    <p class="devis-form__error" id="date-depart-error" role="alert" hidden>Veuillez sélectionner une date de départ.</p>
                                 </div>
                                 <div class="devis-field">
-                                    <label class="devis-field__label" for="nb_passagers">Nb de passagers</label>
-                                    <input class="devis-field__input" type="number" id="nb_passagers" name="nb_passagers" placeholder="Ex : 2" min="1">
+                                    <label class="devis-field__label" for="nb_passagers">Nombre de passagers <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="number" id="nb_passagers" name="nb_passagers" placeholder="Ex : 2" min="1" required>
+                                    <p class="devis-form__error" id="nb-passagers-error" role="alert" hidden>Veuillez indiquer le nombre de passagers (min. 1).</p>
                                 </div>
                             </div>
+
+                            <div class="devis-field devis-reveal" id="date-retour-wrap" hidden>
+                                <label class="devis-field__label" for="date_retour">Date de retour <span aria-hidden="true">*</span></label>
+                                <input class="devis-field__input" type="date" id="date_retour" name="date_retour">
+                                <p class="devis-form__error" id="date-retour-error" role="alert" hidden>Veuillez sélectionner une date de retour.</p>
+                            </div>
+
+                            <!-- §2 Type de billet -->
+                            <p class="devis-subsection-title">Type de billet</p>
+
                             <div class="devis-field">
                                 <label class="devis-field__label" for="type_billet">Type de billet</label>
                                 <select class="devis-field__input devis-field__select" id="type_billet" name="type_billet">
                                     <option value="">Choisir…</option>
                                     <option value="aller-simple">Aller simple</option>
                                     <option value="aller-retour">Aller–Retour</option>
+                                    <option value="multi-destinations">Multi-destinations</option>
                                 </select>
                             </div>
+
+                            <!-- §3 Zone de voyage -->
+                            <p class="devis-subsection-title">Zone de voyage</p>
+
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="zone_voyage">Zone de voyage</label>
+                                <select class="devis-field__input devis-field__select" id="zone_voyage" name="zone_voyage">
+                                    <option value="">Sélectionner…</option>
+                                    <option value="schengen">Espace Schengen</option>
+                                    <option value="cedeao">CEDEAO / Afrique de l'Ouest</option>
+                                    <option value="afrique-centrale">Afrique centrale</option>
+                                    <option value="amerique-nord">Amérique du Nord</option>
+                                    <option value="amerique-sud">Amérique du Sud</option>
+                                    <option value="moyen-orient">Moyen-Orient</option>
+                                    <option value="asie">Asie</option>
+                                    <option value="autre">Autre destination internationale</option>
+                                </select>
+                            </div>
+
+                            <!-- §4 Situation administrative -->
+                            <p class="devis-subsection-title">Situation administrative</p>
+
+                            <div class="devis-field">
+                                <div class="devis-checkbox-group devis-checkbox-group--grid">
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="admin_passeport" value="1">
+                                        <span>Je possède un passeport valide</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="admin_visa" value="1">
+                                        <span>Je possède déjà un visa</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="admin_titre_sejour" value="1">
+                                        <span>Je possède un titre de séjour</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="admin_assistance_visa" value="1">
+                                        <span>J'ai besoin d'une assistance visa</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="infos_documents">
+                                    Informations complémentaires sur vos documents
+                                    <span class="devis-field__optional">(optionnel)</span>
+                                </label>
+                                <textarea class="devis-field__input devis-field__textarea" id="infos_documents" name="infos_documents"
+                                          placeholder="Ex : Visa expiré, renouvellement de titre de séjour en cours, première demande de visa…" rows="3"></textarea>
+                            </div>
+
+                            <!-- §5 Préférences de voyage -->
+                            <p class="devis-subsection-title">Préférences de voyage</p>
+
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="classe_billet">Classe du billet</label>
+                                <select class="devis-field__input devis-field__select" id="classe_billet" name="classe_billet">
+                                    <option value="">Choisir…</option>
+                                    <option value="economique">Économique</option>
+                                    <option value="premium-economy">Premium Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="premiere-classe">Première classe</option>
+                                </select>
+                            </div>
+
+                            <div class="devis-field">
+                                <div class="devis-checkbox-group devis-checkbox-group--grid">
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="pref_vol_direct" value="1">
+                                        <span>Vol direct uniquement</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="pref_escales" value="1">
+                                        <span>Escales acceptées</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="pref_bagage" value="1">
+                                        <span>Bagage en soute inclus souhaité</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="pref_horaires_flexibles" value="1">
+                                        <span>Horaires flexibles</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- §6 Services complémentaires -->
+                            <p class="devis-subsection-title">Services complémentaires</p>
+
+                            <div class="devis-field">
+                                <div class="devis-checkbox-group devis-checkbox-group--grid">
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="service_hotel" value="1">
+                                        <span>Réservation hôtel</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="service_assurance_voyage" value="1">
+                                        <span>Assurance voyage</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="service_assistance_aeroport" value="1">
+                                        <span>Assistance aéroport</span>
+                                    </label>
+                                    <label class="devis-checkbox">
+                                        <input type="checkbox" name="service_location_voiture" value="1">
+                                        <span>Location de voiture</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- §7 Budget -->
+                            <p class="devis-subsection-title">Budget</p>
+
+                            <div class="devis-field-row">
+                                <div class="devis-field">
+                                    <label class="devis-field__label" for="budget">
+                                        Budget estimatif
+                                        <span class="devis-field__optional">(optionnel)</span>
+                                    </label>
+                                    <input class="devis-field__input" type="number" id="budget" name="budget" placeholder="Ex : 500 000" min="0">
+                                </div>
+                                <div class="devis-field">
+                                    <label class="devis-field__label" for="devise">Devise</label>
+                                    <select class="devis-field__input devis-field__select" id="devise" name="devise">
+                                        <option value="FCFA">FCFA</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="USD">USD</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="devis-form__nav">

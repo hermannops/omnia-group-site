@@ -322,6 +322,78 @@
     box-shadow: 0 0 0 3px rgba(10, 47, 110, 0.1);
 }
 
+/* ── Form subsection title ──────────────────────────────── */
+.devis-subsection-title {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    border-bottom: 2px solid rgba(10, 47, 110, 0.1);
+    padding-bottom: var(--space-2);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-5);
+}
+
+.conditional-fields > .devis-subsection-title:first-child {
+    margin-top: 0;
+}
+
+/* ── Checkboxes ─────────────────────────────────────────── */
+.devis-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.devis-checkbox-group--grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+}
+
+.devis-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--border-radius-md);
+    border: 1.5px solid var(--color-border);
+    background-color: var(--color-bg);
+    transition: border-color var(--transition-fast),
+                background-color var(--transition-fast);
+    font-size: var(--text-sm);
+    color: var(--color-body);
+    line-height: var(--line-height-normal);
+    user-select: none;
+}
+
+.devis-checkbox:hover {
+    border-color: var(--color-primary-light);
+    background-color: rgba(10, 47, 110, 0.03);
+}
+
+.devis-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
+
+.devis-checkbox:has(input:checked) {
+    border-color: var(--color-primary);
+    background-color: rgba(10, 47, 110, 0.05);
+    color: var(--color-dark);
+    font-weight: var(--font-weight-medium);
+}
+
+/* ── Reveal animation for conditional single fields ─────── */
+.devis-reveal {
+    animation: fadeIn var(--transition-base) ease;
+}
+
 /* ── Conditional fields ─────────────────────────────────── */
 .conditional-fields,
 .sub-conditional {
@@ -616,6 +688,10 @@
     .service-selector {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-6);
+    }
+
+    .devis-checkbox-group--grid {
+        grid-template-columns: 1fr 1fr;
     }
 }
 

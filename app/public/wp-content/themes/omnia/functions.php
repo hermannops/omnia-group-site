@@ -317,17 +317,32 @@ function omnia_handle_devis_submission(string $service): void {
 /* ── Build service-specific detail fields ──────────────── */
 function omnia_build_devis_details(string $service): array {
     $details = [];
-    $allowed = ['text', 'email', 'number'];
 
-    $map = [
+    $text_map = [
         'assurances' => ['sous_service', 'type_vehicule', 'marque', 'annee', 'immatriculation', 'destination_voyage', 'nb_voyageurs', 'date_depart_voyage', 'date_retour', 'num_passeport', 'lieu_delivrance', 'date_delivrance', 'date_expiration'],
-        'billeterie' => ['ville_depart', 'destination', 'date_depart', 'nb_passagers', 'type_billet'],
+        'billeterie' => [
+            'ville_depart', 'destination', 'date_depart', 'date_retour', 'nb_passagers',
+            'type_billet', 'zone_voyage', 'classe_billet',
+            'admin_passeport', 'admin_visa', 'admin_titre_sejour', 'admin_assistance_visa',
+            'pref_vol_direct', 'pref_escales', 'pref_bagage', 'pref_horaires_flexibles',
+            'service_hotel', 'service_assurance_voyage', 'service_assistance_aeroport', 'service_location_voiture',
+            'budget', 'devise',
+        ],
     ];
 
-    $fields = $map[$service] ?? [];
+    $textarea_map = [
+        'billeterie' => ['infos_documents'],
+    ];
 
-    foreach ($fields as $field) {
+    foreach ($text_map[$service] ?? [] as $field) {
         $value = sanitize_text_field($_POST[$field] ?? '');
+        if ($value !== '') {
+            $details[$field] = $value;
+        }
+    }
+
+    foreach ($textarea_map[$service] ?? [] as $field) {
+        $value = sanitize_textarea_field($_POST[$field] ?? '');
         if ($value !== '') {
             $details[$field] = $value;
         }
@@ -362,11 +377,35 @@ function omnia_build_email_body(string $prenom, string $nom, string $tel, string
         'carte_grise'        => 'Carte grise',
         'permis_conduire'    => 'Permis de conduire',
         'controle_technique' => 'Contrôle technique',
-        'ville_depart'       => 'Ville de départ',
-        'destination'        => 'Destination',
-        'date_depart'        => 'Date de départ',
-        'nb_passagers'       => 'Nombre de passagers',
-        'type_billet'        => 'Type de billet',
+        'ville_depart'                 => 'Ville de départ',
+        'destination'                  => 'Destination',
+        'date_depart'                  => 'Date de départ',
+        'date_retour'                  => 'Date de retour',
+        'nb_passagers'                 => 'Nombre de passagers',
+        'type_billet'                  => 'Type de billet',
+        'zone_voyage'                  => 'Zone de voyage',
+        'classe_billet'                => 'Classe du billet',
+        'admin_passeport'              => 'Passeport valide',
+        'admin_visa'                   => 'Visa',
+        'admin_titre_sejour'           => 'Titre de séjour',
+        'admin_assistance_visa'        => 'Assistance visa',
+        'infos_documents'              => 'Infos documents',
+        'pref_vol_direct'              => 'Vol direct uniquement',
+        'pref_escales'                 => 'Escales acceptées',
+        'pref_bagage'                  => 'Bagage en soute',
+        'pref_horaires_flexibles'      => 'Horaires flexibles',
+        'service_hotel'                => 'Réservation hôtel',
+        'service_assurance_voyage'     => 'Assurance voyage',
+        'service_assistance_aeroport'  => 'Assistance aéroport',
+        'service_location_voiture'     => 'Location de voiture',
+        'budget'                       => 'Budget estimatif',
+        'devise'                       => 'Devise',
+    ];
+
+    $checkbox_fields = [
+        'admin_passeport', 'admin_visa', 'admin_titre_sejour', 'admin_assistance_visa',
+        'pref_vol_direct', 'pref_escales', 'pref_bagage', 'pref_horaires_flexibles',
+        'service_hotel', 'service_assurance_voyage', 'service_assistance_aeroport', 'service_location_voiture',
     ];
 
     $file_fields = ['carte_grise', 'permis_conduire', 'controle_technique'];
@@ -376,7 +415,9 @@ function omnia_build_email_body(string $prenom, string $nom, string $tel, string
         $label = $label_map[$key] ?? ucfirst(str_replace('_', ' ', $key));
         if (in_array($key, $file_fields, true)) {
             $td_value = "<td style='padding:6px 12px;'><a href='" . esc_url($value) . "' target='_blank' style='color:#0A2F6E;font-weight:600;'>Télécharger</a></td>";
-        } elseif ($key === 'message') {
+        } elseif (in_array($key, $checkbox_fields, true)) {
+            $td_value = "<td style='padding:6px 12px;color:#1d9e75;font-weight:600;'>✓ Oui</td>";
+        } elseif ($key === 'message' || $key === 'infos_documents') {
             $td_value = "<td style='padding:6px 12px;color:#0D1B2A;white-space:pre-wrap;'>" . esc_html($value) . "</td>";
         } else {
             $td_value = "<td style='padding:6px 12px;color:#0D1B2A;font-weight:600;'>" . esc_html($value) . "</td>";

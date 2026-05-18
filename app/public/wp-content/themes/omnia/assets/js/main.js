@@ -214,6 +214,19 @@
             }
         });
 
+        // Show/hide "Date de retour" based on ticket type
+        document.getElementById('type_billet')?.addEventListener('change', function () {
+            const wrap = document.getElementById('date-retour-wrap');
+            if (!wrap) return;
+            if (this.value === 'aller-retour') {
+                wrap.removeAttribute('hidden');
+            } else {
+                wrap.setAttribute('hidden', '');
+                document.getElementById('date_retour').value = '';
+                document.getElementById('date-retour-error')?.setAttribute('hidden', '');
+            }
+        });
+
         function showConditionalFields(service) {
             document.querySelectorAll('.conditional-fields').forEach(el => el.setAttribute('hidden', ''));
             const target = document.getElementById(`fields-${service}`);
@@ -268,10 +281,38 @@
             return valid;
         }
 
+        function validateStep3() {
+            const service = devisForm.querySelector('input[name="service"]:checked')?.value;
+            if (service !== 'billeterie') return true;
+
+            let valid = true;
+
+            function checkField(inputId, errorId, test) {
+                const el  = document.getElementById(inputId);
+                const err = document.getElementById(errorId);
+                const ok  = test(el);
+                el?.classList.toggle('is-invalid', !ok);
+                ok ? err?.setAttribute('hidden', '') : err?.removeAttribute('hidden');
+                if (!ok) valid = false;
+            }
+
+            checkField('ville_depart',  'ville-depart-error',  el => !!el?.value.trim());
+            checkField('destination',   'destination-error',   el => !!el?.value.trim());
+            checkField('date_depart',   'date-depart-error',   el => !!el?.value);
+            checkField('nb_passagers',  'nb-passagers-error',  el => el?.value && parseInt(el.value, 10) >= 1);
+
+            if (document.getElementById('type_billet')?.value === 'aller-retour') {
+                checkField('date_retour', 'date-retour-error', el => !!el?.value);
+            }
+
+            return valid;
+        }
+
         // AJAX submit
         devisForm.addEventListener('submit', async e => {
             e.preventDefault();
             if (!validateStep2()) { showStep(2); return; }
+            if (!validateStep3()) { showStep(3); return; }
 
             // ── Capture values NOW — before any async gap or reset ──
             const clientPrenom  = document.getElementById('prenom')?.value.trim()    || '';
