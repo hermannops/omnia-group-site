@@ -438,8 +438,9 @@
                 const data = await res.json();
 
                 if (data.success) {
-                    // Hide form steps
-                    devisForm.querySelectorAll('.devis-fieldset, .devis-steps').forEach(el => el.setAttribute('hidden', ''));
+                    devisForm.querySelectorAll('.devis-fieldset').forEach(el => el.setAttribute('hidden', ''));
+                    devisForm.closest('.devis-form-wrap')?.querySelector('.devis-steps')?.setAttribute('hidden', '');
+                    document.querySelector('.devis-header')?.setAttribute('hidden', '');
                     const successEl = document.getElementById('devis-success');
                     successEl?.removeAttribute('hidden');
 
