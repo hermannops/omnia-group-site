@@ -223,16 +223,22 @@
         // Step 4 → back
         document.getElementById('step4-back')?.addEventListener('click', () => showStep(3));
 
-        // Show/hide "Date de retour" based on ticket type
+        // Block past dates on all date inputs
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('#devis-form input[type="date"]').forEach(input => {
+            input.setAttribute('min', today);
+        });
+
+        // Hide "Date de retour" only when Aller simple (visible by default)
         document.getElementById('type_billet')?.addEventListener('change', function () {
             const wrap = document.getElementById('date-retour-wrap');
             if (!wrap) return;
-            if (this.value === 'aller-retour') {
-                wrap.removeAttribute('hidden');
-            } else {
+            if (this.value === 'aller-simple') {
                 wrap.setAttribute('hidden', '');
                 document.getElementById('date_retour').value = '';
                 document.getElementById('date-retour-error')?.setAttribute('hidden', '');
+            } else {
+                wrap.removeAttribute('hidden');
             }
         });
 
@@ -311,12 +317,11 @@
                 if (!ok) valid = false;
             }
 
-            checkField('ville_depart',  'ville-depart-error',  el => !!el?.value.trim());
-            checkField('destination',   'destination-error',   el => !!el?.value.trim());
-            checkField('date_depart',   'date-depart-error',   el => !!el?.value);
-            checkField('nb_passagers',  'nb-passagers-error',  el => el?.value && parseInt(el.value, 10) >= 1);
+            checkField('aeroport_depart', 'aeroport-depart-error', el => !!el?.value.trim());
+            checkField('destination',     'destination-error',     el => !!el?.value.trim());
+            checkField('date_depart',     'date-depart-error',     el => !!el?.value);
 
-            if (document.getElementById('type_billet')?.value === 'aller-retour') {
+            if (document.getElementById('type_billet')?.value !== 'aller-simple') {
                 checkField('date_retour', 'date-retour-error', el => !!el?.value);
             }
 

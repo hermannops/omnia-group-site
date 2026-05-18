@@ -294,6 +294,7 @@ class Omnia_Admin_Devis {
             'carte_grise'        => 'Carte grise',
             'permis_conduire'    => 'Permis de conduire',
             'controle_technique' => 'Contrôle technique',
+            'aeroport_depart'             => 'Aéroport de départ',
             'ville_depart'                => 'Ville de départ',
             'destination'                 => 'Destination',
             'date_depart'                 => 'Date de départ',

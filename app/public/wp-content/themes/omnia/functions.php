@@ -321,7 +321,7 @@ function omnia_build_devis_details(string $service): array {
     $text_map = [
         'assurances' => ['sous_service', 'type_vehicule', 'marque', 'annee', 'immatriculation', 'destination_voyage', 'nb_voyageurs', 'date_depart_voyage', 'date_retour', 'num_passeport', 'lieu_delivrance', 'date_delivrance', 'date_expiration'],
         'billeterie' => [
-            'ville_depart', 'destination', 'date_depart', 'date_retour', 'nb_passagers',
+            'aeroport_depart', 'destination', 'date_depart', 'date_retour',
             'type_billet', 'zone_voyage', 'classe_billet',
             'admin_passeport', 'admin_visa', 'admin_titre_sejour', 'admin_assistance_visa',
             'pref_vol_direct', 'pref_escales', 'pref_bagage', 'pref_horaires_flexibles',
@@ -377,6 +377,7 @@ function omnia_build_email_body(string $prenom, string $nom, string $tel, string
         'carte_grise'        => 'Carte grise',
         'permis_conduire'    => 'Permis de conduire',
         'controle_technique' => 'Contrôle technique',
+        'aeroport_depart'              => 'Aéroport de départ',
         'ville_depart'                 => 'Ville de départ',
         'destination'                  => 'Destination',
         'date_depart'                  => 'Date de départ',

@@ -233,55 +233,19 @@
                         <!-- Billeterie fields -->
                         <div class="conditional-fields" id="fields-billeterie" hidden>
 
-                            <!-- §1 Informations de voyage -->
-                            <p class="devis-subsection-title">Informations de voyage</p>
-
-                            <div class="devis-field-row">
-                                <div class="devis-field">
-                                    <label class="devis-field__label" for="ville_depart">Ville de départ <span aria-hidden="true">*</span></label>
-                                    <input class="devis-field__input" type="text" id="ville_depart" name="ville_depart" placeholder="Ex : Cotonou" required>
-                                    <p class="devis-form__error" id="ville-depart-error" role="alert" hidden>Veuillez indiquer la ville de départ.</p>
-                                </div>
-                                <div class="devis-field">
-                                    <label class="devis-field__label" for="destination">Destination <span aria-hidden="true">*</span></label>
-                                    <input class="devis-field__input" type="text" id="destination" name="destination" placeholder="Ex : Paris" required>
-                                    <p class="devis-form__error" id="destination-error" role="alert" hidden>Veuillez indiquer la destination.</p>
-                                </div>
-                            </div>
-
-                            <div class="devis-field-row">
-                                <div class="devis-field">
-                                    <label class="devis-field__label" for="date_depart">Date de départ <span aria-hidden="true">*</span></label>
-                                    <input class="devis-field__input" type="date" id="date_depart" name="date_depart" required>
-                                    <p class="devis-form__error" id="date-depart-error" role="alert" hidden>Veuillez sélectionner une date de départ.</p>
-                                </div>
-                                <div class="devis-field">
-                                    <label class="devis-field__label" for="nb_passagers">Nombre de passagers <span aria-hidden="true">*</span></label>
-                                    <input class="devis-field__input" type="number" id="nb_passagers" name="nb_passagers" placeholder="Ex : 2" min="1" required>
-                                    <p class="devis-form__error" id="nb-passagers-error" role="alert" hidden>Veuillez indiquer le nombre de passagers (min. 1).</p>
-                                </div>
-                            </div>
-
-                            <div class="devis-field devis-reveal" id="date-retour-wrap" hidden>
-                                <label class="devis-field__label" for="date_retour">Date de retour <span aria-hidden="true">*</span></label>
-                                <input class="devis-field__input" type="date" id="date_retour" name="date_retour">
-                                <p class="devis-form__error" id="date-retour-error" role="alert" hidden>Veuillez sélectionner une date de retour.</p>
-                            </div>
-
-                            <!-- §2 Type de billet -->
+                            <!-- §1 Type de billet -->
                             <p class="devis-subsection-title">Type de billet</p>
 
                             <div class="devis-field">
                                 <label class="devis-field__label" for="type_billet">Type de billet</label>
                                 <select class="devis-field__input devis-field__select" id="type_billet" name="type_billet">
-                                    <option value="">Choisir…</option>
+                                    <option value="aller-retour" selected>Aller–Retour</option>
                                     <option value="aller-simple">Aller simple</option>
-                                    <option value="aller-retour">Aller–Retour</option>
                                     <option value="multi-destinations">Multi-destinations</option>
                                 </select>
                             </div>
 
-                            <!-- §3 Zone de voyage -->
+                            <!-- §2 Zone de voyage -->
                             <p class="devis-subsection-title">Zone de voyage</p>
 
                             <div class="devis-field">
@@ -297,6 +261,35 @@
                                     <option value="asie">Asie</option>
                                     <option value="autre">Autre destination internationale</option>
                                 </select>
+                            </div>
+
+                            <!-- §3 Informations de voyage -->
+                            <p class="devis-subsection-title">Informations de voyage</p>
+
+                            <div class="devis-field-row">
+                                <div class="devis-field">
+                                    <label class="devis-field__label" for="date_depart">Date de départ <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="date" id="date_depart" name="date_depart" required>
+                                    <p class="devis-form__error" id="date-depart-error" role="alert" hidden>Veuillez sélectionner une date de départ.</p>
+                                </div>
+                                <div class="devis-field" id="date-retour-wrap">
+                                    <label class="devis-field__label" for="date_retour">Date de retour <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="date" id="date_retour" name="date_retour">
+                                    <p class="devis-form__error" id="date-retour-error" role="alert" hidden>Veuillez sélectionner une date de retour.</p>
+                                </div>
+                            </div>
+
+                            <div class="devis-field-row">
+                                <div class="devis-field">
+                                    <label class="devis-field__label" for="aeroport_depart">Aéroport de départ <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="text" id="aeroport_depart" name="aeroport_depart" placeholder="Ex : Cotonou (COO)" required>
+                                    <p class="devis-form__error" id="aeroport-depart-error" role="alert" hidden>Veuillez indiquer l'aéroport de départ.</p>
+                                </div>
+                                <div class="devis-field">
+                                    <label class="devis-field__label" for="destination">Destination <span aria-hidden="true">*</span></label>
+                                    <input class="devis-field__input" type="text" id="destination" name="destination" placeholder="Ex : Paris (CDG)" required>
+                                    <p class="devis-form__error" id="destination-error" role="alert" hidden>Veuillez indiquer la destination.</p>
+                                </div>
                             </div>
 
                         </div>
