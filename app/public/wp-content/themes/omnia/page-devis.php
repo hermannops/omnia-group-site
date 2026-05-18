@@ -203,8 +203,8 @@
                                         <input class="devis-field__input" type="date" id="date_depart_voyage" name="date_depart_voyage">
                                     </div>
                                     <div class="devis-field">
-                                        <label class="devis-field__label" for="date_retour">Date de retour</label>
-                                        <input class="devis-field__input" type="date" id="date_retour" name="date_retour">
+                                        <label class="devis-field__label" for="date_retour_voyage">Date de retour</label>
+                                        <input class="devis-field__input" type="date" id="date_retour_voyage" name="date_retour">
                                     </div>
                                 </div>
                                 <div class="devis-field-row">
