@@ -217,6 +217,7 @@
         // Step 3 → 4 (billeterie only)
         document.getElementById('step3-next')?.addEventListener('click', () => {
             if (!validateStep3()) return;
+            updateAdminFields();
             showStep(4);
         });
 
@@ -227,6 +228,35 @@
         const today = new Date().toISOString().split('T')[0];
         document.querySelectorAll('#devis-form input[type="date"]').forEach(input => {
             input.setAttribute('min', today);
+        });
+
+        // Visa-required destination zones
+        const VISA_REQUIRED_ZONES = ['schengen', 'afrique-centrale', 'amerique-nord', 'amerique-sud', 'moyen-orient', 'asie', 'autre'];
+
+        function updateAdminFields() {
+            const zone = document.getElementById('zone_voyage')?.value;
+            const needsVisa = VISA_REQUIRED_ZONES.includes(zone);
+            document.getElementById('admin-visa-wrap')?.toggleAttribute('hidden', !needsVisa);
+            document.getElementById('admin-titre-sejour-wrap')?.toggleAttribute('hidden', !needsVisa);
+            if (!needsVisa) {
+                const visaEl = document.getElementById('admin_visa');
+                const sejour = document.getElementById('admin_titre_sejour');
+                if (visaEl) visaEl.checked = false;
+                if (sejour) sejour.checked = false;
+            }
+        }
+
+        document.getElementById('zone_voyage')?.addEventListener('change', updateAdminFields);
+
+        document.getElementById('admin_passeport')?.addEventListener('change', function () {
+            const wrap = document.getElementById('passeport-number-wrap');
+            wrap?.toggleAttribute('hidden', !this.checked);
+            if (!this.checked) {
+                const numInput = document.getElementById('passeport_numero');
+                if (numInput) numInput.value = '';
+                document.getElementById('passeport-numero-error')?.setAttribute('hidden', '');
+            }
+            document.getElementById('passeport-error')?.setAttribute('hidden', '');
         });
 
         // Hide "Date de retour" only when Aller simple (visible by default)
@@ -328,11 +358,43 @@
             return valid;
         }
 
+        function validateStep4() {
+            const service = devisForm.querySelector('input[name="service"]:checked')?.value;
+            if (service !== 'billeterie') return true;
+
+            let valid = true;
+
+            const passeport    = document.getElementById('admin_passeport');
+            const passeportErr = document.getElementById('passeport-error');
+            if (!passeport?.checked) {
+                passeportErr?.removeAttribute('hidden');
+                valid = false;
+            } else {
+                passeportErr?.setAttribute('hidden', '');
+            }
+
+            if (passeport?.checked) {
+                const numInput = document.getElementById('passeport_numero');
+                const numErr   = document.getElementById('passeport-numero-error');
+                if (!numInput?.value.trim()) {
+                    numErr?.removeAttribute('hidden');
+                    numInput?.classList.add('is-invalid');
+                    valid = false;
+                } else {
+                    numErr?.setAttribute('hidden', '');
+                    numInput?.classList.remove('is-invalid');
+                }
+            }
+
+            return valid;
+        }
+
         // AJAX submit
         devisForm.addEventListener('submit', async e => {
             e.preventDefault();
             if (!validateStep2()) { showStep(2); return; }
             if (!validateStep3()) { showStep(3); return; }
+            if (!validateStep4()) { showStep(4); return; }
 
             // ── Capture values NOW — before any async gap or reset ──
             const clientPrenom  = document.getElementById('prenom')?.value.trim()    || '';

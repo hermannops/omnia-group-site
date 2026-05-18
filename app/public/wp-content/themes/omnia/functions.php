@@ -323,7 +323,7 @@ function omnia_build_devis_details(string $service): array {
         'billeterie' => [
             'aeroport_depart', 'destination', 'date_depart', 'date_retour',
             'type_billet', 'zone_voyage', 'classe_billet',
-            'admin_passeport', 'admin_visa', 'admin_titre_sejour', 'admin_assistance_visa',
+            'admin_passeport', 'num_passeport', 'admin_visa', 'admin_titre_sejour', 'admin_assistance_visa',
             'pref_vol_direct', 'pref_escales', 'pref_bagage', 'pref_horaires_flexibles',
             'service_hotel', 'service_assurance_voyage', 'service_assistance_aeroport', 'service_location_voiture',
             'budget', 'devise',

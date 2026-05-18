@@ -311,25 +311,47 @@
                         <!-- §4 Situation administrative -->
                         <p class="devis-subsection-title">Situation administrative</p>
 
+                        <!-- Passeport valide — toujours requis -->
                         <div class="devis-field">
-                            <div class="devis-checkbox-group devis-checkbox-group--grid">
-                                <label class="devis-checkbox">
-                                    <input type="checkbox" name="admin_passeport" value="1">
-                                    <span>Je possède un passeport valide</span>
-                                </label>
-                                <label class="devis-checkbox">
-                                    <input type="checkbox" name="admin_visa" value="1">
-                                    <span>Je possède déjà un visa</span>
-                                </label>
-                                <label class="devis-checkbox">
-                                    <input type="checkbox" name="admin_titre_sejour" value="1">
-                                    <span>Je possède un titre de séjour</span>
-                                </label>
-                                <label class="devis-checkbox">
-                                    <input type="checkbox" name="admin_assistance_visa" value="1">
-                                    <span>J'ai besoin d'une assistance visa</span>
-                                </label>
-                            </div>
+                            <label class="devis-checkbox">
+                                <input type="checkbox" id="admin_passeport" name="admin_passeport" value="1">
+                                <span>Je possède un passeport valide <span aria-hidden="true">*</span></span>
+                            </label>
+                            <p class="devis-form__error" id="passeport-error" role="alert" hidden>Un passeport valide est requis pour voyager à l'international.</p>
+                        </div>
+
+                        <!-- Numéro de passeport — apparaît si passeport coché -->
+                        <div class="devis-field devis-reveal" id="passeport-number-wrap" hidden>
+                            <label class="devis-field__label" for="passeport_numero">
+                                Numéro de passeport <span aria-hidden="true">*</span>
+                            </label>
+                            <input class="devis-field__input" type="text" id="passeport_numero" name="num_passeport"
+                                   placeholder="Ex : BJ1234567">
+                            <p class="devis-form__error" id="passeport-numero-error" role="alert" hidden>Veuillez saisir votre numéro de passeport.</p>
+                        </div>
+
+                        <!-- Visa — affiché uniquement si la destination exige un visa -->
+                        <div class="devis-field" id="admin-visa-wrap" hidden>
+                            <label class="devis-checkbox">
+                                <input type="checkbox" id="admin_visa" name="admin_visa" value="1">
+                                <span>Je possède déjà un visa</span>
+                            </label>
+                        </div>
+
+                        <!-- Titre de séjour — affiché pour les destinations nécessitant visa ou titre -->
+                        <div class="devis-field" id="admin-titre-sejour-wrap" hidden>
+                            <label class="devis-checkbox">
+                                <input type="checkbox" id="admin_titre_sejour" name="admin_titre_sejour" value="1">
+                                <span>Je possède un titre de séjour</span>
+                            </label>
+                        </div>
+
+                        <!-- Assistance visa — toujours visible -->
+                        <div class="devis-field">
+                            <label class="devis-checkbox">
+                                <input type="checkbox" id="admin_assistance_visa" name="admin_assistance_visa" value="1">
+                                <span>J'ai besoin d'une assistance visa</span>
+                            </label>
                         </div>
 
                         <div class="devis-field">
