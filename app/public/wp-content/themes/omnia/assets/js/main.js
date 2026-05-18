@@ -118,7 +118,7 @@
     const devisForm = document.getElementById('devis-form');
 
     if (devisForm) {
-        const steps      = [1, 2, 3];
+        const steps      = [1, 2, 3, 4];
         let currentStep  = 1;
 
         const getFieldset = n => document.getElementById(`step-${n}`);
@@ -214,6 +214,15 @@
             }
         });
 
+        // Step 3 → 4 (billeterie only)
+        document.getElementById('step3-next')?.addEventListener('click', () => {
+            if (!validateStep3()) return;
+            showStep(4);
+        });
+
+        // Step 4 → back
+        document.getElementById('step4-back')?.addEventListener('click', () => showStep(3));
+
         // Show/hide "Date de retour" based on ticket type
         document.getElementById('type_billet')?.addEventListener('change', function () {
             const wrap = document.getElementById('date-retour-wrap');
@@ -231,6 +240,12 @@
             document.querySelectorAll('.conditional-fields').forEach(el => el.setAttribute('hidden', ''));
             const target = document.getElementById(`fields-${service}`);
             target?.removeAttribute('hidden');
+
+            const isBilleterie = service === 'billeterie';
+            document.getElementById('step-indicator-4')?.toggleAttribute('hidden', !isBilleterie);
+            document.getElementById('step-line-4')?.toggleAttribute('hidden', !isBilleterie);
+            document.getElementById('step3-next')?.toggleAttribute('hidden', !isBilleterie);
+            document.getElementById('submit-btn')?.toggleAttribute('hidden', isBilleterie);
         }
 
         function showAssuranceSubFields(value) {
@@ -321,7 +336,7 @@
             const clientPhone   = document.getElementById('telephone')?.value.trim() || '';
             const clientService = devisForm.querySelector('input[name="service"]:checked')?.value || '';
 
-            const submitBtn     = document.getElementById('submit-btn');
+            const submitBtn     = e.submitter;
             const submitText    = submitBtn?.querySelector('.submit-text');
             const submitSpinner = submitBtn?.querySelector('.submit-spinner');
             const globalErr     = document.getElementById('global-error');

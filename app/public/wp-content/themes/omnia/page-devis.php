@@ -33,6 +33,11 @@
                         <div class="devis-step__circle">3</div>
                         <span class="devis-step__label">Détails</span>
                     </div>
+                    <div class="devis-step__line" id="step-line-4" aria-hidden="true" hidden></div>
+                    <div class="devis-step" role="listitem" data-step="4" id="step-indicator-4" hidden>
+                        <div class="devis-step__circle">4</div>
+                        <span class="devis-step__label">Préférences</span>
+                    </div>
                 </div>
 
                 <form id="devis-form" class="devis-form" novalidate>
@@ -294,124 +299,138 @@
                                 </select>
                             </div>
 
-                            <!-- §4 Situation administrative -->
-                            <p class="devis-subsection-title">Situation administrative</p>
-
-                            <div class="devis-field">
-                                <div class="devis-checkbox-group devis-checkbox-group--grid">
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="admin_passeport" value="1">
-                                        <span>Je possède un passeport valide</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="admin_visa" value="1">
-                                        <span>Je possède déjà un visa</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="admin_titre_sejour" value="1">
-                                        <span>Je possède un titre de séjour</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="admin_assistance_visa" value="1">
-                                        <span>J'ai besoin d'une assistance visa</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="devis-field">
-                                <label class="devis-field__label" for="infos_documents">
-                                    Informations complémentaires sur vos documents
-                                    <span class="devis-field__optional">(optionnel)</span>
-                                </label>
-                                <textarea class="devis-field__input devis-field__textarea" id="infos_documents" name="infos_documents"
-                                          placeholder="Ex : Visa expiré, renouvellement de titre de séjour en cours, première demande de visa…" rows="3"></textarea>
-                            </div>
-
-                            <!-- §5 Préférences de voyage -->
-                            <p class="devis-subsection-title">Préférences de voyage</p>
-
-                            <div class="devis-field">
-                                <label class="devis-field__label" for="classe_billet">Classe du billet</label>
-                                <select class="devis-field__input devis-field__select" id="classe_billet" name="classe_billet">
-                                    <option value="">Choisir…</option>
-                                    <option value="economique">Économique</option>
-                                    <option value="premium-economy">Premium Economy</option>
-                                    <option value="business">Business</option>
-                                    <option value="premiere-classe">Première classe</option>
-                                </select>
-                            </div>
-
-                            <div class="devis-field">
-                                <div class="devis-checkbox-group devis-checkbox-group--grid">
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="pref_vol_direct" value="1">
-                                        <span>Vol direct uniquement</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="pref_escales" value="1">
-                                        <span>Escales acceptées</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="pref_bagage" value="1">
-                                        <span>Bagage en soute inclus souhaité</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="pref_horaires_flexibles" value="1">
-                                        <span>Horaires flexibles</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- §6 Services complémentaires -->
-                            <p class="devis-subsection-title">Services complémentaires</p>
-
-                            <div class="devis-field">
-                                <div class="devis-checkbox-group devis-checkbox-group--grid">
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="service_hotel" value="1">
-                                        <span>Réservation hôtel</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="service_assurance_voyage" value="1">
-                                        <span>Assurance voyage</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="service_assistance_aeroport" value="1">
-                                        <span>Assistance aéroport</span>
-                                    </label>
-                                    <label class="devis-checkbox">
-                                        <input type="checkbox" name="service_location_voiture" value="1">
-                                        <span>Location de voiture</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- §7 Budget -->
-                            <p class="devis-subsection-title">Budget</p>
-
-                            <div class="devis-field-row">
-                                <div class="devis-field">
-                                    <label class="devis-field__label" for="budget">
-                                        Budget estimatif
-                                        <span class="devis-field__optional">(optionnel)</span>
-                                    </label>
-                                    <input class="devis-field__input" type="number" id="budget" name="budget" placeholder="Ex : 500 000" min="0">
-                                </div>
-                                <div class="devis-field">
-                                    <label class="devis-field__label" for="devise">Devise</label>
-                                    <select class="devis-field__input devis-field__select" id="devise" name="devise">
-                                        <option value="FCFA">FCFA</option>
-                                        <option value="EUR">EUR</option>
-                                        <option value="USD">USD</option>
-                                    </select>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="devis-form__nav">
                             <button type="button" class="btn btn-outline devis-btn-outline" id="step3-back">← Retour</button>
+                            <button type="button" class="btn btn-primary" id="step3-next" hidden>Continuer →</button>
                             <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <span class="submit-text">Envoyer ma demande</span>
+                                <span class="submit-spinner" hidden aria-hidden="true">…</span>
+                            </button>
+                        </div>
+                    </fieldset>
+
+                    <!-- ── STEP 4: Billeterie — Préférences et services ── -->
+                    <fieldset class="devis-fieldset" id="step-4" hidden>
+                        <legend class="devis-fieldset__legend">Informations complémentaires</legend>
+
+                        <!-- §4 Situation administrative -->
+                        <p class="devis-subsection-title">Situation administrative</p>
+
+                        <div class="devis-field">
+                            <div class="devis-checkbox-group devis-checkbox-group--grid">
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="admin_passeport" value="1">
+                                    <span>Je possède un passeport valide</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="admin_visa" value="1">
+                                    <span>Je possède déjà un visa</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="admin_titre_sejour" value="1">
+                                    <span>Je possède un titre de séjour</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="admin_assistance_visa" value="1">
+                                    <span>J'ai besoin d'une assistance visa</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="devis-field">
+                            <label class="devis-field__label" for="infos_documents">
+                                Informations complémentaires sur vos documents
+                                <span class="devis-field__optional">(optionnel)</span>
+                            </label>
+                            <textarea class="devis-field__input devis-field__textarea" id="infos_documents" name="infos_documents"
+                                      placeholder="Ex : Visa expiré, renouvellement de titre de séjour en cours, première demande de visa…" rows="3"></textarea>
+                        </div>
+
+                        <!-- §5 Préférences de voyage -->
+                        <p class="devis-subsection-title">Préférences de voyage</p>
+
+                        <div class="devis-field">
+                            <label class="devis-field__label" for="classe_billet">Classe du billet</label>
+                            <select class="devis-field__input devis-field__select" id="classe_billet" name="classe_billet">
+                                <option value="">Choisir…</option>
+                                <option value="economique">Économique</option>
+                                <option value="premium-economy">Premium Economy</option>
+                                <option value="business">Business</option>
+                                <option value="premiere-classe">Première classe</option>
+                            </select>
+                        </div>
+
+                        <div class="devis-field">
+                            <div class="devis-checkbox-group devis-checkbox-group--grid">
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="pref_vol_direct" value="1">
+                                    <span>Vol direct uniquement</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="pref_escales" value="1">
+                                    <span>Escales acceptées</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="pref_bagage" value="1">
+                                    <span>Bagage en soute inclus souhaité</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="pref_horaires_flexibles" value="1">
+                                    <span>Horaires flexibles</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- §6 Services complémentaires -->
+                        <p class="devis-subsection-title">Services complémentaires</p>
+
+                        <div class="devis-field">
+                            <div class="devis-checkbox-group devis-checkbox-group--grid">
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="service_hotel" value="1">
+                                    <span>Réservation hôtel</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="service_assurance_voyage" value="1">
+                                    <span>Assurance voyage</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="service_assistance_aeroport" value="1">
+                                    <span>Assistance aéroport</span>
+                                </label>
+                                <label class="devis-checkbox">
+                                    <input type="checkbox" name="service_location_voiture" value="1">
+                                    <span>Location de voiture</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- §7 Budget -->
+                        <p class="devis-subsection-title">Budget</p>
+
+                        <div class="devis-field-row">
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="budget">
+                                    Budget estimatif
+                                    <span class="devis-field__optional">(optionnel)</span>
+                                </label>
+                                <input class="devis-field__input" type="number" id="budget" name="budget" placeholder="Ex : 500 000" min="0">
+                            </div>
+                            <div class="devis-field">
+                                <label class="devis-field__label" for="devise">Devise</label>
+                                <select class="devis-field__input devis-field__select" id="devise" name="devise">
+                                    <option value="FCFA">FCFA</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="devis-form__nav">
+                            <button type="button" class="btn btn-outline devis-btn-outline" id="step4-back">← Retour</button>
+                            <button type="submit" class="btn btn-primary" id="submit-btn-4">
                                 <span class="submit-text">Envoyer ma demande</span>
                                 <span class="submit-spinner" hidden aria-hidden="true">…</span>
                             </button>
