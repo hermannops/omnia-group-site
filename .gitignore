@@ -1,0 +1,17 @@
+# Ignore everything
+/*
+
+# Except these
+!.gitignore
+!.github/
+!CLAUDE.MD
+!app/public/wp-content/themes/omnia/
+
+# Inside the theme, ignore these
+app/public/wp-content/themes/omnia/assets/css/wp-cli.phar
+app/public/wp-content/themes/omnia/.DS_Store
+
+# Common ignores
+.DS_Store
+*.log
+*.zip
