@@ -159,11 +159,7 @@
                 return;
             }
             err?.setAttribute('hidden', '');
-            if (selected.value === 'mobile-money' || selected.value === 'canal') {
-                window.location.href = '/mobile-money-canal';
-                return;
-            }
-            showConditionalFields(selected.value);
+showConditionalFields(selected.value);
             showStep(2);
         });
 
