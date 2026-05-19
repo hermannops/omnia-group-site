@@ -682,6 +682,63 @@
 /* Also reuse why-grid from home.css — shared class */
 
 /* ══════════════════════════════════════════════════════════
+   Mobile — small phone fixes (< 480px)
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 479px) {
+    .devis-form-wrap {
+        padding: var(--space-6);
+        border-radius: var(--border-radius-lg);
+    }
+
+    /* Step indicators: shrink circles, hide labels, shorten lines */
+    .devis-step__circle {
+        width: 28px;
+        height: 28px;
+        font-size: var(--text-xs);
+    }
+
+    .devis-step__label {
+        display: none;
+    }
+
+    .devis-step__line {
+        min-width: 16px;
+        max-width: 32px;
+    }
+
+    /* Service selector: single column on very small phones */
+    .service-selector {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+    }
+
+    .devis-header__title {
+        font-size: var(--text-2xl);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Mobile — all phones (< 640px)
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 639px) {
+    /* Field rows: single column */
+    .devis-field-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Nav buttons: stack vertically, full width */
+    .devis-form__nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .devis-form__nav .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
    Desktop breakpoints
    ══════════════════════════════════════════════════════════ */
 @media (min-width: 640px) {

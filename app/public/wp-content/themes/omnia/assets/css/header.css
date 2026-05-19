@@ -1,0 +1,375 @@
+/* ═══════════════════════════════════════════════════════════
+   Header — Omnia Group
+   Mobile-first. All values via design-system.css variables.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Site header wrapper ───────────────────────────────── */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform var(--transition-base);
+}
+
+/* ── Topbar ────────────────────────────────────────────── */
+.topbar {
+    background-color: var(--color-dark);
+    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    line-height: 1;
+    overflow: hidden;
+    max-height: 40px;
+    transition: max-height var(--transition-base),
+                opacity var(--transition-base),
+                padding var(--transition-base);
+}
+
+.topbar.is-hidden {
+    max-height: 0;
+    opacity: 0;
+}
+
+.topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 12px;
+    gap: var(--space-4);
+}
+
+.topbar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.topbar__item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.topbar__item svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.topbar__divider {
+    opacity: 0.3;
+}
+
+.topbar__right {
+    flex-shrink: 0;
+}
+
+.topbar__phone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-sm);
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.topbar__phone:hover {
+    color: var(--color-white);
+}
+
+.topbar__phone svg {
+    opacity: 0.9;
+}
+
+/* ── Navbar ────────────────────────────────────────────── */
+.navbar {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow var(--transition-base);
+}
+
+.navbar.is-scrolled {
+    box-shadow: var(--shadow-md);
+    border-bottom-color: transparent;
+}
+
+.navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    height: 72px;
+}
+
+/* ── Logo ──────────────────────────────────────────────── */
+.navbar__logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar__logo img {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+.navbar__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+}
+
+.navbar__logo-omnia {
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+}
+
+.navbar__logo-group {
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    letter-spacing: 0.25em;
+    margin-top: 2px;
+}
+
+/* ── Desktop nav links ─────────────────────────────────── */
+.navbar__links {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--space-1);
+}
+
+.navbar__link {
+    display: block;
+    padding: 8px 12px;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-body);
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-fast);
+}
+
+.navbar__link:hover {
+    color: var(--color-primary);
+}
+
+.navbar__link:hover::after,
+.navbar__link.is-active::after {
+    transform: scaleX(1);
+}
+
+.navbar__link.is-active {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ── Desktop CTA ───────────────────────────────────────── */
+.navbar__cta {
+    display: none;
+    flex-shrink: 0;
+    padding: 10px 22px;
+    font-size: var(--text-sm);
+}
+
+/* ── Hamburger button ──────────────────────────────────── */
+.navbar__hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0;
+    transition: background-color var(--transition-fast);
+}
+
+.navbar__hamburger:hover {
+    background-color: var(--color-bg-soft);
+}
+
+.hamburger__bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-dark);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform var(--transition-base),
+                opacity var(--transition-base);
+}
+
+/* Hamburger → X animation */
+.navbar__hamburger.is-open .hamburger__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger.is-open .hamburger__bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.navbar__hamburger.is-open .hamburger__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile overlay menu ───────────────────────────────── */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-primary);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    padding: var(--space-8);
+    /* slide-in animation */
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: opacity var(--transition-base),
+                transform var(--transition-base);
+    pointer-events: none;
+}
+
+.mobile-menu:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* hidden attr handled via JS — override display for transition */
+.mobile-menu[hidden] {
+    display: flex !important; /* keep in layout for animation */
+    visibility: hidden;
+}
+
+.mobile-menu__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.mobile-menu__link {
+    display: block;
+    padding: var(--space-3) var(--space-6);
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    transition: color var(--transition-fast),
+                background-color var(--transition-fast);
+    width: 100%;
+}
+
+.mobile-menu__link:hover,
+.mobile-menu__link.is-active {
+    color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-menu__link.is-active {
+    color: var(--color-accent);
+}
+
+.mobile-menu__cta {
+    margin-top: var(--space-4);
+    padding: 14px 40px;
+    font-size: var(--text-lg);
+}
+
+/* ── Header spacer (prevents content jumping under fixed header) */
+.header-spacer {
+    height: 112px; /* topbar 40px + navbar 72px */
+    transition: height var(--transition-base);
+}
+
+.header-spacer.topbar-hidden {
+    height: 72px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Mobile — hide topbar on small phones to maximise viewport
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 639px) {
+    .topbar {
+        display: none;
+    }
+
+    .header-spacer {
+        height: 72px;
+    }
+
+    .header-spacer.topbar-hidden {
+        height: 72px;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Desktop breakpoint — min-width: 768px
+   ══════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+    .topbar__left {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navbar__links {
+        display: flex;
+    }
+
+    .navbar__cta {
+        display: inline-flex;
+    }
+
+    .navbar__hamburger {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none !important;
+    }
+}

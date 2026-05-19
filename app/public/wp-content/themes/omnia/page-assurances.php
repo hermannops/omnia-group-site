@@ -282,8 +282,7 @@ get_header(); ?>
                 </div>
                 <div class="page-cta-strip__actions">
                     <a href="<?php echo esc_url( home_url('/devis') ); ?>" class="btn btn-primary">
-                        Demander un devis
-                    </a>
+                </a>
                     <a href="<?php echo esc_url('https://wa.me/2290196870499?text=Bonjour%20Omnia%20Group%2C%20je%20souhaite%20des%20informations%20sur%20vos%20services.'); ?>" class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </div>
             </div>

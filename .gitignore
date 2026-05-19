@@ -1,10 +1,23 @@
-# Ignore everything
+# Ignore everything at root
 /*
 
-# Except these
+# Un-ignore these root entries
 !.gitignore
 !.github/
 !CLAUDE.MD
+!app/
+
+# Ignore everything inside app/ except the path to the theme
+app/*
+!app/public/
+
+app/public/*
+!app/public/wp-content/
+
+app/public/wp-content/*
+!app/public/wp-content/themes/
+
+app/public/wp-content/themes/*
 !app/public/wp-content/themes/omnia/
 
 # Inside the theme, ignore these

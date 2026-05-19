@@ -1,0 +1,493 @@
+/* ═══════════════════════════════════════════════════════════
+   Homepage — Omnia Group
+   Mobile-first.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Section headers (shared) ──────────────────────────── */
+/* ── HERO ───────────────────────────────────────────────── */
+.hero {
+    background: linear-gradient(135deg, var(--color-bg-soft) 0%, #eef2fb 100%);
+    padding-block: var(--space-16) var(--space-20);
+    overflow: hidden;
+}
+
+.hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+/* Hero copy */
+.hero__copy {
+    max-width: 600px;
+}
+
+.hero__copy .badge {
+    margin-bottom: var(--space-4);
+}
+
+.hero__title {
+    margin-block: var(--space-4) var(--space-6);
+    color: var(--color-dark);
+    font-size: var(--text-4xl);
+    line-height: 1.1;
+}
+
+.hero__title-accent {
+    color: var(--color-primary);
+    position: relative;
+}
+
+.hero__title-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+    opacity: 0.6;
+}
+
+.hero__subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-body);
+    line-height: var(--line-height-loose);
+    margin-bottom: var(--space-8);
+    max-width: 520px;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+}
+
+.hero__btn--wa {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.hero__btn--wa:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.hero__trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-body);
+}
+
+.hero__trust-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-success);
+    color: var(--color-white);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+}
+
+/* Hero floating service cards */
+.hero__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    position: relative;
+}
+
+.hero__card {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+    transition-delay: var(--delay, 0ms);
+    text-align: center;
+}
+
+.hero__card:nth-child(even) {
+    margin-top: var(--space-6);
+}
+
+.hero__card-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-2);
+}
+
+.hero__card-label {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-base);
+    color: var(--color-dark);
+    margin-bottom: 4px;
+}
+
+.hero__card-sub {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+}
+
+.hero__card--money    { border-top: 3px solid var(--color-whatsapp); }
+.hero__card--assurance { border-top: 3px solid var(--color-primary); }
+.hero__card--billet   { border-top: 3px solid var(--color-accent); }
+.hero__card--canal    { border-top: 3px solid var(--color-dark); }
+
+/* ── TRUST BAR ──────────────────────────────────────────── */
+.trust-bar {
+    padding-block: var(--space-8);
+}
+
+.trust-bar__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: center;
+}
+
+.trust-bar__label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: var(--font-weight-semibold);
+}
+
+.trust-bar__logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.trust-bar__partner {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+}
+
+.trust-bar__sep {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: var(--text-xl);
+}
+
+/* ── SERVICES GRID ──────────────────────────────────────── */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    transition-delay: var(--delay, 0ms);
+}
+
+.service-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+    flex-shrink: 0;
+}
+
+.service-card__icon--money    { background-color: rgba(37, 211, 102, 0.1);  color: #1a9e5c; }
+.service-card__icon--assurance { background-color: rgba(10, 47, 110, 0.1);   color: var(--color-primary); }
+.service-card__icon--billet   { background-color: rgba(232, 151, 26, 0.1);  color: var(--color-accent); }
+.service-card__icon--canal    { background-color: rgba(13, 27, 42, 0.08);   color: var(--color-dark); }
+
+.service-card__title {
+    font-size: var(--text-xl);
+    color: var(--color-dark);
+    margin-bottom: var(--space-3);
+}
+
+.service-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    line-height: var(--line-height-loose);
+    margin-bottom: var(--space-4);
+    flex-grow: 1;
+}
+
+.service-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.service-card__list li {
+    font-size: var(--text-sm);
+    color: var(--color-body);
+    padding-left: var(--space-5);
+    position: relative;
+}
+
+.service-card__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+}
+
+.service-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-top: auto;
+    transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.service-card__link:hover {
+    gap: var(--space-3);
+    color: var(--color-accent);
+}
+
+/* ── WHY OMNIA ──────────────────────────────────────────── */
+.why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+.why-card {
+    padding: var(--space-8);
+    border-left: 4px solid var(--color-accent);
+    background-color: var(--color-bg-soft);
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+    transition-delay: var(--delay, 0ms);
+}
+
+.why-card__icon {
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+}
+
+.why-card__title {
+    font-size: var(--text-xl);
+    color: var(--color-dark);
+    margin-bottom: var(--space-3);
+}
+
+.why-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    line-height: var(--line-height-loose);
+}
+
+/* ── TESTIMONIALS ───────────────────────────────────────── */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition-delay: var(--delay, 0ms);
+}
+
+.testimonial-card__stars {
+    color: var(--color-accent);
+    font-size: var(--text-base);
+    letter-spacing: 2px;
+}
+
+.testimonial-card__quote {
+    font-size: var(--text-base);
+    color: var(--color-body);
+    line-height: var(--line-height-loose);
+    font-style: italic;
+    flex-grow: 1;
+}
+
+.testimonial-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+}
+
+.testimonial-card__name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-dark);
+    font-size: var(--text-sm);
+}
+
+/* ── CTA BANNER ─────────────────────────────────────────── */
+.cta-banner__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: flex-start;
+}
+
+.cta-banner__title {
+    font-size: var(--text-3xl);
+    color: var(--color-white);
+    margin-bottom: var(--space-3);
+}
+
+.cta-banner__sub {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: var(--text-lg);
+    max-width: 500px;
+}
+
+.cta-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+/* ══════════════════════════════════════════════════════════
+   Mobile — stack hero cards and buttons on small screens
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 639px) {
+    .hero__cards {
+        grid-template-columns: 1fr 1fr;
+        max-width: 360px;
+        margin-inline: auto;
+    }
+
+    .hero__card {
+        padding: var(--space-4);
+    }
+
+    .hero__card-label {
+        font-size: var(--text-sm);
+    }
+
+    .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero__actions .btn {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .cta-banner__title {
+        font-size: var(--text-2xl);
+    }
+
+    .cta-banner__actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .cta-banner__actions .btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 479px) {
+    .hero__cards {
+        grid-template-columns: 1fr;
+        max-width: 260px;
+    }
+
+    .hero__card:nth-child(even) {
+        margin-top: 0;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Desktop breakpoints
+   ══════════════════════════════════════════════════════════ */
+@media (min-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero__inner {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-16);
+    }
+
+    .hero__copy {
+        flex: 1;
+    }
+
+    .hero__cards {
+        flex: 0 0 400px;
+        width: 400px;
+    }
+
+    .hero__title {
+        font-size: var(--text-5xl);
+    }
+
+    .trust-bar__inner {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cta-banner__inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
