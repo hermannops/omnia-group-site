@@ -15,6 +15,7 @@
 
 /* ── Topbar ────────────────────────────────────────────── */
 .topbar {
+    display: none;
     background-color: var(--color-dark);
     color: rgba(255, 255, 255, 0.75);
     font-family: var(--font-body);
@@ -322,24 +323,20 @@
 
 /* ── Header spacer (prevents content jumping under fixed header) */
 .header-spacer {
-    height: 112px; /* topbar 40px + navbar 72px */
+    height: 72px;
     transition: height var(--transition-base);
 }
 
-.header-spacer.topbar-hidden {
-    height: 72px;
-}
-
 /* ══════════════════════════════════════════════════════════
-   Mobile — hide topbar on small phones to maximise viewport
+   Tablet — min-width: 640px
    ══════════════════════════════════════════════════════════ */
-@media (max-width: 639px) {
+@media (min-width: 640px) {
     .topbar {
-        display: none;
+        display: block;
     }
 
     .header-spacer {
-        height: 72px;
+        height: 112px; /* topbar 40px + navbar 72px */
     }
 
     .header-spacer.topbar-hidden {
@@ -348,7 +345,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   Desktop breakpoint — min-width: 768px
+   Desktop — min-width: 768px
    ══════════════════════════════════════════════════════════ */
 @media (min-width: 768px) {
     .topbar__left {

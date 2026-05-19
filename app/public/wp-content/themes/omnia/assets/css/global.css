@@ -93,12 +93,12 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-dark);
 }
 
-h1 { font-size: var(--text-5xl); }
-h2 { font-size: var(--text-4xl); }
-h3 { font-size: var(--text-3xl); }
-h4 { font-size: var(--text-2xl); }
-h5 { font-size: var(--text-xl); }
-h6 { font-size: var(--text-lg); }
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-base); }
+h6 { font-size: var(--text-sm); }
 
 p {
   line-height: var(--line-height-loose);
@@ -113,7 +113,7 @@ p {
 }
 
 .section {
-  padding-block: var(--space-20);
+  padding-block: var(--space-8);
 }
 
 .section--dark {
@@ -253,28 +253,24 @@ textarea:focus-visible,
 }
 
 /* ── Responsive typography + spacing ───────────────────── */
-@media (min-width: 768px) {
-  h1 { font-size: var(--text-5xl); }
-  h2 { font-size: var(--text-4xl); }
-  h3 { font-size: var(--text-3xl); }
-}
-
-@media (max-width: 767px) {
+@media (min-width: 480px) {
   h1 { font-size: var(--text-3xl); }
   h2 { font-size: var(--text-2xl); }
-  h3 { font-size: var(--text-xl); }
-  h4 { font-size: var(--text-lg); }
 
   .section {
     padding-block: var(--space-12);
   }
 }
 
-@media (max-width: 479px) {
-  h1 { font-size: var(--text-2xl); }
-  h2 { font-size: var(--text-xl); }
+@media (min-width: 768px) {
+  h1 { font-size: var(--text-5xl); }
+  h2 { font-size: var(--text-4xl); }
+  h3 { font-size: var(--text-3xl); }
+  h4 { font-size: var(--text-2xl); }
+  h5 { font-size: var(--text-xl); }
+  h6 { font-size: var(--text-lg); }
 
   .section {
-    padding-block: var(--space-8);
+    padding-block: var(--space-20);
   }
 }

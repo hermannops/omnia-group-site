@@ -191,9 +191,8 @@
 }
 .omnia-message-header {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
+    flex-direction: column;
+    gap: 8px;
     margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--oa-border);
@@ -272,7 +271,7 @@
 /* ── Definition list ─────────────────────────────────────── */
 .omnia-dl {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 1fr;
     gap: 0;
     margin: 0;
 }
@@ -285,13 +284,18 @@
     line-height: 1.5;
 }
 .omnia-dl dt {
+    border-bottom: none;
+    padding-bottom: 0;
     color: var(--oa-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
     font-weight: 500;
-    padding-right: 12px;
 }
 .omnia-dl dd {
     color: var(--oa-dark);
     font-weight: 600;
+    padding-top: 2px;
 }
 .omnia-dl dt:last-of-type,
 .omnia-dl dd:last-of-type {
@@ -617,7 +621,7 @@
 }
 .omnia-form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
     max-width: 400px;
 }
@@ -648,31 +652,33 @@
 .omnia-save-indicator.is-saved  { color: var(--oa-success); background: #D1FAE5; }
 .omnia-save-indicator.is-error  { color: var(--oa-error);   background: #FEE2E2; }
 
-/* ── Mobile responsive ───────────────────────────────────── */
-@media (max-width: 768px) {
+/* ── Desktop responsive ──────────────────────────────────── */
+@media (min-width: 769px) {
     .omnia-dl {
-        grid-template-columns: 1fr;
+        grid-template-columns: 120px 1fr;
     }
 
     .omnia-dl dt {
-        border-bottom: none;
-        padding-bottom: 0;
+        border-bottom: 1px solid var(--oa-border);
+        padding-bottom: 8px;
         color: var(--oa-muted);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: .04em;
+        font-size: 13px;
+        text-transform: none;
+        letter-spacing: 0;
     }
 
     .omnia-dl dd {
-        padding-top: 2px;
+        padding-top: 0;
     }
 
     .omnia-message-header {
-        flex-direction: column;
-        gap: 8px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
     }
 
     .omnia-form-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
