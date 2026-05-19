@@ -137,7 +137,7 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-5);
     margin-bottom: var(--space-8);
-    max-width: 480px;
+    max-width: 520px;
     margin-inline: auto;
 }
 
@@ -706,10 +706,9 @@
         max-width: 32px;
     }
 
-    /* Service selector: single column on very small phones */
+    /* Service selector: keep 2-col 2×2 grid on very small phones */
     .service-selector {
-        grid-template-columns: 1fr;
-        max-width: 280px;
+        gap: var(--space-3);
     }
 
     .devis-header__title {

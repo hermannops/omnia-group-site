@@ -76,6 +76,24 @@
                                 </div>
                             </label>
 
+                            <label class="service-option">
+                                <input type="radio" name="service" value="mobile-money">
+                                <div class="service-option__card">
+                                    <div class="service-option__icon">📱</div>
+                                    <div class="service-option__name">Mobile Money</div>
+                                    <div class="service-option__sub">MTN & Moov</div>
+                                </div>
+                            </label>
+
+                            <label class="service-option">
+                                <input type="radio" name="service" value="canal">
+                                <div class="service-option__card">
+                                    <div class="service-option__icon">📺</div>
+                                    <div class="service-option__name">Canal+</div>
+                                    <div class="service-option__sub">Abonnement & réabonnement</div>
+                                </div>
+                            </label>
+
                         </div>
                         <p class="devis-form__error" id="step1-error" role="alert" hidden>Veuillez sélectionner un service.</p>
                         <div class="devis-form__nav">
