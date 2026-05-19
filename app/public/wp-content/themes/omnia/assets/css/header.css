@@ -15,7 +15,6 @@
 
 /* ── Topbar ────────────────────────────────────────────── */
 .topbar {
-    display: none;
     background-color: var(--color-dark);
     color: rgba(255, 255, 255, 0.75);
     font-family: var(--font-body);
@@ -323,20 +322,24 @@
 
 /* ── Header spacer (prevents content jumping under fixed header) */
 .header-spacer {
-    height: 72px;
+    height: 112px; /* topbar 40px + navbar 72px */
     transition: height var(--transition-base);
 }
 
+.header-spacer.topbar-hidden {
+    height: 72px;
+}
+
 /* ══════════════════════════════════════════════════════════
-   Tablet — min-width: 640px
+   Mobile — hide topbar under 768px
    ══════════════════════════════════════════════════════════ */
-@media (min-width: 640px) {
+@media (max-width: 767px) {
     .topbar {
-        display: block;
+        display: none;
     }
 
     .header-spacer {
-        height: 112px; /* topbar 40px + navbar 72px */
+        height: 72px;
     }
 
     .header-spacer.topbar-hidden {
