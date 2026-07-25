@@ -201,6 +201,25 @@ function omnia_dequeue_defaults(): void {
 }
 add_action('wp_enqueue_scripts', 'omnia_dequeue_defaults', 100);
 
+/* ── Mail sender identity + failure logging ─────────────── */
+// o2switch (and most cPanel hosts) silently reject mail whose "From" address
+// isn't a real mailbox on the domain — this is why wp_mail() can return
+// success while nothing arrives, not even in spam.
+function omnia_mail_from(): string {
+    return 'contact@omnia-group-sarl.com';
+}
+add_filter('wp_mail_from', 'omnia_mail_from');
+
+function omnia_mail_from_name(): string {
+    return 'Omnia Group';
+}
+add_filter('wp_mail_from_name', 'omnia_mail_from_name');
+
+function omnia_log_mail_failure(WP_Error $error): void {
+    error_log('[Omnia] wp_mail failed: ' . $error->get_error_message());
+}
+add_action('wp_mail_failed', 'omnia_log_mail_failure');
+
 /* ── AJAX: Devis form handler ──────────────────────────── */
 function omnia_handle_devis(): void {
     check_ajax_referer('omnia_devis_nonce', 'nonce');
@@ -249,10 +268,15 @@ function omnia_handle_contact_submission(): void {
         update_post_meta($post_id, '_omnia_read',      0);
     }
 
-    // Email notification
+    // Email notification (admin)
     $subject = sprintf('[Omnia Contact] %s — %s %s', $objet, $prenom, $nom);
     $body    = omnia_build_contact_email($prenom, $nom, $email, $tel, $objet, $msg);
     wp_mail(get_option('admin_email'), $subject, $body, ['Content-Type: text/html; charset=UTF-8']);
+
+    // Confirmation email (client)
+    $client_subject = 'Nous avons bien reçu votre message — Omnia Group';
+    $client_body    = omnia_build_client_confirmation_email($prenom, 'contact');
+    wp_mail($email, $client_subject, $client_body, ['Content-Type: text/html; charset=UTF-8']);
 
     wp_send_json_success(['message' => 'Message envoyé avec succès.']);
 }
@@ -306,10 +330,17 @@ function omnia_handle_devis_submission(string $service): void {
         }
     }
 
-    // Email notification
+    // Email notification (admin)
     $subject = sprintf('[Omnia Devis] %s — %s %s', ucfirst($service), $prenom, $nom);
     $body    = omnia_build_email_body($prenom, $nom, $tel, $email, $service, $details);
     wp_mail(get_option('admin_email'), $subject, $body, ['Content-Type: text/html; charset=UTF-8']);
+
+    // Confirmation email (client) — only if an email was provided (field is optional)
+    if (! empty($email)) {
+        $client_subject = 'Nous avons bien reçu votre demande de devis — Omnia Group';
+        $client_body    = omnia_build_client_confirmation_email($prenom, $service);
+        wp_mail($email, $client_subject, $client_body, ['Content-Type: text/html; charset=UTF-8']);
+    }
 
     wp_send_json_success(['message' => 'Votre demande a été envoyée. Nous vous contactons très bientôt.']);
 }
@@ -465,6 +496,35 @@ function omnia_build_contact_email(string $prenom, string $nom, string $email, s
           </tr>
         </table>
         <p style='margin-top:24px;color:#718096;font-size:13px;'>Envoyé depuis le formulaire de contact — omnia-group-sarl.com</p>
+      </div>
+    </div>";
+}
+
+/* ── HTML email — client confirmation (devis or contact) ─── */
+function omnia_build_client_confirmation_email(string $prenom, string $context): string {
+    $intro = $context === 'contact'
+        ? 'Nous avons bien reçu votre message et reviendrons vers vous très rapidement.'
+        : 'Nous avons bien reçu votre demande de devis et reviendrons vers vous très rapidement.';
+
+    $wa_url = 'https://wa.me/2290196870499?text=' . rawurlencode('Bonjour Omnia Group, je souhaite des informations sur vos services.');
+
+    return "
+    <div style='font-family:Inter,sans-serif;max-width:600px;margin:auto;'>
+      <div style='background:#0A2F6E;padding:24px 32px;border-radius:8px 8px 0 0;'>
+        <h2 style='color:#ffffff;margin:0;font-size:20px;'>Merci, " . esc_html($prenom) . " !</h2>
+      </div>
+      <div style='background:#F7F9FC;padding:32px;border-radius:0 0 8px 8px;'>
+        <p style='color:#0D1B2A;font-size:15px;line-height:1.6;margin:0 0 20px;'>" . esc_html($intro) . "</p>
+        <p style='color:#4A5568;font-size:14px;line-height:1.6;margin:0 0 20px;'>
+          Besoin de nous joindre plus vite ? Écrivez-nous directement sur WhatsApp :
+        </p>
+        <p style='margin:0 0 24px;'>
+          <a href='" . esc_url($wa_url) . "' style='background:#25D366;color:#ffffff;text-decoration:none;font-weight:600;padding:12px 24px;border-radius:6px;display:inline-block;'>Nous écrire sur WhatsApp</a>
+        </p>
+        <p style='color:#718096;font-size:13px;margin:0;'>
+          Omnia Group SARL — Ilot 103 J, Maison GADESSOU, ZOCA, Abomey-Calavi<br>
+          Lun–Ven 9h–12h / 14h–18h30 · Sam 9h–16h
+        </p>
       </div>
     </div>";
 }
