@@ -220,6 +220,22 @@ function omnia_log_mail_failure(WP_Error $error): void {
 }
 add_action('wp_mail_failed', 'omnia_log_mail_failure');
 
+/* ── SMTP relay (Brevo) — bypasses o2switch's unauthenticated
+   local mail(), which gets silently dropped by Gmail/Outlook.
+   Credentials live in wp-config.php (never committed to the repo). */
+function omnia_configure_smtp(PHPMailer\PHPMailer\PHPMailer $phpmailer): void {
+    if (! defined('OMNIA_SMTP_HOST')) return;
+
+    $phpmailer->isSMTP();
+    $phpmailer->Host       = OMNIA_SMTP_HOST;
+    $phpmailer->Port       = OMNIA_SMTP_PORT;
+    $phpmailer->SMTPAuth   = true;
+    $phpmailer->Username   = OMNIA_SMTP_USER;
+    $phpmailer->Password   = OMNIA_SMTP_PASS;
+    $phpmailer->SMTPSecure = 'tls';
+}
+add_action('phpmailer_init', 'omnia_configure_smtp');
+
 /* ── AJAX: Devis form handler ──────────────────────────── */
 function omnia_handle_devis(): void {
     check_ajax_referer('omnia_devis_nonce', 'nonce');
