@@ -224,6 +224,8 @@ add_action('wp_mail_failed', 'omnia_log_mail_failure');
    local mail(), which gets silently dropped by Gmail/Outlook.
    Credentials live in wp-config.php (never committed to the repo). */
 function omnia_configure_smtp(PHPMailer\PHPMailer\PHPMailer $phpmailer): void {
+    error_log('[Omnia] phpmailer_init fired — OMNIA_SMTP_HOST defined: ' . (defined('OMNIA_SMTP_HOST') ? 'yes' : 'no'));
+
     if (! defined('OMNIA_SMTP_HOST')) return;
 
     $phpmailer->isSMTP();
@@ -233,6 +235,10 @@ function omnia_configure_smtp(PHPMailer\PHPMailer\PHPMailer $phpmailer): void {
     $phpmailer->Username   = OMNIA_SMTP_USER;
     $phpmailer->Password   = OMNIA_SMTP_PASS;
     $phpmailer->SMTPSecure = 'tls';
+    $phpmailer->SMTPDebug  = 2;
+    $phpmailer->Debugoutput = function ($str) {
+        error_log('[Omnia SMTP] ' . trim($str));
+    };
 }
 add_action('phpmailer_init', 'omnia_configure_smtp');
 
